@@ -16,7 +16,7 @@ export interface SapaceCardProps {
     endPrice: number;
 }
 
-export default function SapaceCard({
+export default function SpaceCard({
     images,
     keywords,
     title,
@@ -54,7 +54,7 @@ export default function SapaceCard({
                     bottom: 22px !important; /* 기본값 덮어쓰기 위해 !important 사용 */
                 }
             `}</style>
-            <div className="flex flex-col w-350 relative">
+            <div className="flex flex-col w-350 relative cursor-pointer">
                 {/* 이미지 슬라이드 */}
                 <div className="w-350 h-350 relative">
                     <Slider {...settings}>
