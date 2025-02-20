@@ -59,7 +59,7 @@ export default function SmallPage(): JSX.Element {
   };
 
   return (
-    // 추후에 border 및 border-radius 수정 필요
+    // 추후에 border 및 border-radius 수정 필요!
     <div className="w-full h-full border-1 rounded-30 relative">
       <div className="pt-151 px-84 flex flex-col items-center">
         {step === 1 ? (
