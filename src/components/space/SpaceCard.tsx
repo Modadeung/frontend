@@ -16,7 +16,7 @@ export interface SapaceCardProps {
     endPrice: number;
 }
 
-export default function SapaceCard({
+export default function SpaceCard({
     images,
     keywords,
     title,
