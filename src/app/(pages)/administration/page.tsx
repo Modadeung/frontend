@@ -12,10 +12,6 @@ export default function AdministrationPage(): JSX.Element {
         </div>
         <div className="flex flex-col gap-y-50">
           <AdministrationCard />
-          <AdministrationCard />
-          <AdministrationCard />
-          <AdministrationCard />
-          <AdministrationCard />
         </div>
       </div>
       <Navbar />
