@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>모다들엉</h1>;
+  return <span>모다들엉 메인 페이지</span>;
 }
