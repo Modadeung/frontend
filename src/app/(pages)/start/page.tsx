@@ -8,15 +8,23 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import cuteDog from "../../../assets/images/cutedog.jpeg";
+import onboarding from "@/assets/images/onboarding.png";
+import onboarding1 from "@/assets/images/onboarding1.png";
+import sm from "@/assets/images/sm.png";
 import { useEffect, useState } from "react";
 
 export default function StartPage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [slideUp, setSlideUp] = useState(false); // 위로 이동할 상태
 
     useEffect(() => {
         setTimeout(() => {
+            setSlideUp(true); // 위로 이동 애니메이션 시작
+        }, 1000);
+
+        setTimeout(() => {
             setIsLoading(false);
-        }, 50);
+        }, 2000);
     }, []);
     const router = useRouter();
 
@@ -38,6 +46,11 @@ export default function StartPage() {
     return (
         <>
             <style jsx global>{`
+                .slide-up {
+                    transform: translateY(-100%);
+                    transition: transform 0.5s ease-in-out;
+                }
+
                 /* 선택되지 않은 dot 스타일 */
                 .custom-dots li button:before {
                     color: #d1d1d1; /* 회색 */
@@ -56,28 +69,28 @@ export default function StartPage() {
                     bottom: 500px !important; /* 기본값 덮어쓰기 위해 !important 사용 */
                 }
             `}</style>
-
-            {!isLoading && (
+            <>
                 <div className="w-full h-screen flex flex-col items-center">
-                    <p className="mt-151 font-bold text-[24px]">
-                        앱에 대한 설명입니다.
+                    <p className="mt-151 font-bold text-[24px] px-20 text-center">
+                        버려지는 공간에 판매대를 두어, <br /> 저렴한 가격으로
+                        대여해요
                     </p>
                     <div className="w-252 h-328 mt-53">
                         <Slider {...settings} className="w-full h-full">
                             <div className="relative w-252 h-328">
                                 <Image
-                                    src={cuteDog}
+                                    src={onboarding1}
                                     alt="Slide 1"
                                     fill
-                                    className="rounded-lg shadow-md object-fill"
+                                    className="rounded-lg  object-contain"
                                 />
                             </div>
                             <div className="relative w-252 h-328">
                                 <Image
-                                    src={cuteDog}
+                                    src={sm}
                                     alt="Slide 2"
                                     fill
-                                    className="rounded-lg shadow-md object-fill"
+                                    className="rounded-lg  object-contain"
                                 />
                             </div>
                             <div className="relative w-252 h-328">
@@ -85,7 +98,7 @@ export default function StartPage() {
                                     src={cuteDog}
                                     alt="Slide 3"
                                     fill
-                                    className="rounded-lg shadow-md object-fill"
+                                    className="rounded-lg  object-contain"
                                 />
                             </div>
                         </Slider>
@@ -96,6 +109,21 @@ export default function StartPage() {
                     >
                         시작하기
                     </Button>
+                </div>
+            </>
+            {isLoading && (
+                <div
+                    className={`absolute w-screen h-screen inset-0 flex items-center justify-center overflow-hidden ${
+                        slideUp ? "slide-up" : ""
+                    }`}
+                >
+                    <Image
+                        src={onboarding}
+                        alt="onboarding"
+                        fill
+                        priority
+                        className="object-cover"
+                    />
                 </div>
             )}
         </>
