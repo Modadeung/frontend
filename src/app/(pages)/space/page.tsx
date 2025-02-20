@@ -37,29 +37,28 @@ export default function SpacePage() {
 
     const data = [
         {
-            images: [
+            imageUrlList: [
                 "https://i.ibb.co/G3BctN01/cutedog.jpg",
                 "https://i.ibb.co/39hychr4/Kakao-Talk-Photo-2025-02-12-12-14-40.png",
             ],
-            keywords: ["키워드", "키워드", "키워드"],
-            title: "한라봉 카페 판매대",
-            description:
+            keywordList: ["키워드", "키워드", "키워드"],
+            store_name: "한라봉 카페 판매대",
+            store_description:
                 "감성 가득한 플라워 디자인 스튜디도 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
-            startPrice: 206777,
-            endPrice: 306777,
+            store_min_price: 206777,
+            store_max_price: 306777,
         },
-
         {
-            images: [
+            imageUrlList: [
                 "https://i.ibb.co/G3BctN01/cutedog.jpg",
                 "https://i.ibb.co/39hychr4/Kakao-Talk-Photo-2025-02-12-12-14-40.png",
             ],
-            keywords: ["키워드", "키워드", "키워드"],
-            title: "한라봉 카페 판매대",
-            description:
+            keywordList: ["키워드", "키워드", "키워드"],
+            store_name: "한라봉 카페 판매대",
+            store_description:
                 "감성 가득한 플라워 디자인 스튜디도 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
-            startPrice: 206777,
-            endPrice: 306777,
+            store_min_price: 206777,
+            store_max_price: 306777,
         },
     ];
 
@@ -97,7 +96,13 @@ export default function SpacePage() {
                 <div className="mt-[32px] flex flex-col gap-[43px] pb-[104px]">
                     {data &&
                         data.map((d, index) => (
-                            <SpaceCard key={index} {...d} />
+                            <SpaceCard
+                                store_id={""}
+                                store_scope={0}
+                                store_review={""}
+                                key={index}
+                                {...d}
+                            />
                         ))}
                 </div>
 

@@ -7,24 +7,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-export interface SapaceCardProps {
-    images: string[];
-    keywords: string[];
-    title: string;
-    description: string;
-    startPrice: number;
-    endPrice: number;
-}
+import { GetStoreListResponse } from "@/types/Store.types";
 
 export default function SpaceCard({
-    images,
-    keywords,
-    title,
-    description,
-    startPrice,
-    endPrice,
-}: SapaceCardProps) {
+    imageUrlList,
+    keywordList,
+    store_name,
+    store_description,
+    store_min_price,
+    store_max_price,
+}: GetStoreListResponse) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -69,7 +61,7 @@ export default function SpaceCard({
                     {/* 이미지 슬라이드 */}
                     <div className="w-350 h-350 relative">
                         <Slider {...settings}>
-                            {images.map((image, index) => (
+                            {imageUrlList.map((image, index) => (
                                 <div
                                     key={index}
                                     className="w-350 h-350 relative"
@@ -87,22 +79,22 @@ export default function SpaceCard({
 
                     {/* 키워드들 */}
                     <div className="flex gap-[8px] mt-[22px]">
-                        {keywords.map((keyword, index) => (
+                        {keywordList.map((keyword, index) => (
                             <div key={index}>
                                 <SpaceSmallKeyword keyword={keyword} />
                             </div>
                         ))}
                     </div>
 
-                    <p className="mt-[7px]">{title}</p>
+                    <p className="mt-[7px]">{store_name}</p>
                     <p className="mt-[7px] text-[14px] text-[#6E6E6E]">
-                        {description}
+                        {store_description}
                     </p>
 
                     <div className="flex gap-[2px] mt-[7px]">
-                        <span>₩{formatNumber(startPrice)}</span>
+                        <span>₩{formatNumber(store_min_price)}</span>
                         <span>~</span>
-                        <span>{formatNumber(endPrice)}</span>
+                        <span>{formatNumber(store_max_price)}</span>
                     </div>
                 </div>
             )}
