@@ -1,10 +1,10 @@
 import {
-  CreateStore,
-  CreateUserReservation,
-  GetStoreDetail,
-  GetStoreDetailResponse,
-  GetStoreList,
-  GetStoreListResponse,
+    CreateStore,
+    CreateUserReservation,
+    GetStoreDetail,
+    GetStoreDetailResponse,
+    GetStoreList,
+    GetStoreListResponse,
 } from "@/types/Store.types";
 import { axiosInstance } from "../axiosInstance";
 
@@ -14,13 +14,13 @@ import { axiosInstance } from "../axiosInstance";
  * @returns 상점 목록 데이터
  */
 export const getStoreList = async (
-  params: GetStoreList
-): Promise<GetStoreListResponse> => {
-  const response = await axiosInstance.get("/store/list", {
-    params,
-    paramsSerializer: { indexes: null },
-  });
-  return response.data;
+    params: GetStoreList
+): Promise<GetStoreListResponse[]> => {
+    const response = await axiosInstance.get("/store/list", {
+        params,
+        paramsSerializer: { indexes: null },
+    });
+    return response.data;
 };
 
 /**
@@ -29,10 +29,10 @@ export const getStoreList = async (
  * @returns 상점 상세 정보
  */
 export const getStoreDetail = async (
-  params: GetStoreDetail
+    params: GetStoreDetail
 ): Promise<GetStoreDetailResponse> => {
-  const response = await axiosInstance.get("/store/detail", { params });
-  return response.data;
+    const response = await axiosInstance.get("/store/detail", { params });
+    return response.data;
 };
 
 /**
@@ -41,8 +41,8 @@ export const getStoreDetail = async (
  * @returns 성공 여부
  */
 export const createStore = async (data: CreateStore) => {
-  const response = await axiosInstance.post("/store", data);
-  return response;
+    const response = await axiosInstance.post("/store", data);
+    return response;
 };
 
 /**
@@ -51,6 +51,6 @@ export const createStore = async (data: CreateStore) => {
  * @returns 성공 여부
  */
 export const createUserReservation = async (data: CreateUserReservation) => {
-  const response = await axiosInstance.post("/store/reservation", data);
-  return response;
+    const response = await axiosInstance.post("/store/reservation", data);
+    return response;
 };
