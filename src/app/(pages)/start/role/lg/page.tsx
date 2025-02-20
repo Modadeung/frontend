@@ -73,6 +73,27 @@ export default function SmallPage(): JSX.Element {
   return (
     // 추후에 border 및 border-radius 수정 필요!
     <div className="w-full h-full border-1 rounded-30 relative">
+      {/* 프로그레스바 */}
+      <div className="flex gap-x-7 w-350 m-auto pt-66">
+        <div
+          className={`w-111 h-4 rounded-2 ${
+            selected.length > 0 || step > 1 ? "bg-[#ff9d00]" : "bg-[#d9d9d9]"
+          }`}
+        />
+        <div
+          className={`w-111 h-4 rounded-2 ${
+            step > 1 && (selected.length > 0 || step > 2)
+              ? "bg-[#ff9d00]"
+              : "bg-[#d9d9d9]"
+          }`}
+        />
+        <div
+          className={`w-111 h-4 rounded-2 ${
+            step > 2 && selected.length > 0 ? "bg-[#ff9d00]" : "bg-[#d9d9d9]"
+          }`}
+        />
+      </div>
+
       <div className="pt-151 px-84 flex flex-col items-center">
         {step === 1 ? (
           <>
