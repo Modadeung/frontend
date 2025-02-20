@@ -13,7 +13,7 @@ export default function StartPage() {
     const router = useRouter();
 
     const handleRouting = () => {
-        router.replace("/role");
+        router.replace("/start/role");
     };
 
     const settings = {
