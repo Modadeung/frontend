@@ -6,6 +6,7 @@ import Image from "next/image";
 import plusIcon from "@/assets/icons/plusIcon.svg";
 import { useState } from "react";
 import SpaceCard from "@/components/space/SpaceCard";
+import modalReactangle from "@/assets/icons/modalRectangle.svg";
 
 export default function SpacePage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -68,8 +69,57 @@ export default function SpacePage() {
                             <SpaceCard key={index} {...d} />
                         ))}
                 </div>
+
+                {isCategoryOpen && (
+                    <div className="fixed inset-0 z-50 flex flex-col justify-end">
+                        <div
+                            className="absolute inset-0 bg-black bg-opacity-70"
+                            onClick={() => setIsCategoryOpen(false)}
+                        ></div>
+
+                        <div className="relative flex flex-col w-full h-[444px] bg-white rounded-t-[26px] px-[20px] py-[9px] animate-slide-up">
+                            <div className="mx-auto">
+                                <Image
+                                    src={modalReactangle}
+                                    alt="modalReactangle"
+                                />
+                            </div>
+
+                            <p className="font-bold text-[18px] mt-[16px]">
+                                키워드 추가 선택
+                            </p>
+
+                            <div className="mt-[25px]">
+                                {/* <Button
+                key={category}
+                onClick={() => handleSelect(category)}
+                className={`text-white h-40 px-16 ${
+                  selected.includes(category) ? "bg-[#FF9D00]" : "bg-[#E1E1E8]"
+                }`}
+              >
+                {category}
+              </Button> */}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <Navbar />
             </div>
-            <Navbar />
+
+            <style jsx>{`
+                @keyframes slide-up {
+                    from {
+                        transform: translateY(100%);
+                    }
+                    to {
+                        transform: translateY(0);
+                    }
+                }
+                .animate-slide-up {
+                    animation: slide-up 0.3s ease-out;
+                }
+            `}</style>
         </>
     );
 }

@@ -42,6 +42,11 @@ export default function StartPage() {
                     color: #ff9d00; /* 주황색 */
                     opacity: 1; /* 투명도 100% */
                 }
+
+                /* dots 위치 조정 추가 */
+                .custom-dots {
+                    bottom: 500px !important; /* 기본값 덮어쓰기 위해 !important 사용 */
+                }
             `}</style>
 
             <div className="w-full h-screen flex flex-col items-center">
