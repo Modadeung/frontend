@@ -53,9 +53,6 @@ const config: Config = {
     minWidth: px0_1200,
     minHeight: px0_1200,
     spacing: px0_1200,
-    fontFamily: {
-      primary: ['Pretendard', 'sans-serif'],
-    },
   },
   plugins: [],
 }
