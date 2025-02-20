@@ -1,8 +1,8 @@
-FROM krmp-d2hub-idock.9rum.cc/goorm/node:18
+FROM krmp-d2hub-idock.9rum.cc/goorm/node:20
 
 WORKDIR /usr/src/app
 
-COPY krampoline/ ./
+COPY src/ ./
 
 RUN npm ci
 
