@@ -21,6 +21,7 @@ export default function SpaceDetailPage() {
     const router = useRouter();
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
+
     const settings = {
         dots: true,
         infinite: false,
