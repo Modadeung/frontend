@@ -8,8 +8,10 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GetStoreListResponse } from "@/types/Store.types";
+import { useRouter } from "next/navigation";
 
 export default function SpaceCard({
+    store_id,
     imageUrlList,
     keywordList,
     store_name,
@@ -18,6 +20,11 @@ export default function SpaceCard({
     store_max_price,
 }: GetStoreListResponse) {
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
+
+    const handleRouting = (id: string) => {
+        router.push(`/space/${id}`);
+    };
 
     useEffect(() => {
         setTimeout(() => {
@@ -57,7 +64,12 @@ export default function SpaceCard({
             `}</style>
 
             {!isLoading && (
-                <div className="flex flex-col w-350 relative cursor-pointer">
+                <div
+                    className="flex flex-col w-350 relative cursor-pointer"
+                    onClick={() => {
+                        handleRouting(store_id);
+                    }}
+                >
                     {/* 이미지 슬라이드 */}
                     <div className="w-350 h-350 relative">
                         <Slider {...settings}>
