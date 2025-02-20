@@ -15,7 +15,9 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body className="w-390 max-h-844 m-auto overflow-y-scroll">
+        {children}
+      </body>
     </html>
   );
 }
