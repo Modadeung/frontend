@@ -6,8 +6,8 @@ import Image from "next/image";
 
 const navItems = [
     { href: "/", label: "성장판" },
-    { href: "/space", label: "공간" },
-    { href: "/administration", label: "관리" },
+    { href: "/space", label: "판매대" },
+    { href: "/administration", label: "내역" },
 ];
 
 function NavItem({ href, label }: { href: string; label: string }) {
@@ -21,10 +21,10 @@ function NavItem({ href, label }: { href: string; label: string }) {
                     height={24}
                 />
             )}
-            {label === "공간" && (
+            {label === "판매대" && (
                 <Image src={sell} alt="tableIcon" width={24} height={24} />
             )}
-            {label === "관리" && (
+            {label === "내역" && (
                 <Image src={checklist} alt="listIcon" width={24} height={24} />
             )}
 
