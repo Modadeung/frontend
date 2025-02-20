@@ -131,8 +131,10 @@ export default function SmallPage(): JSX.Element {
               <Button
                 key={category}
                 onClick={() => handleSelect(category)}
-                className={`text-white h-40 px-16 ${
-                  selected.includes(category) ? "bg-[#FF9D00]" : "bg-[#E1E1E8]"
+                className={`h-40 px-16 ${
+                  selected.includes(category)
+                    ? "bg-[#FF9D00] text-white"
+                    : "bg-[#efeff6] text-[#a4a4a4]"
                 }`}
               >
                 {category}
