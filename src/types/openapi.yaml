@@ -114,7 +114,42 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
+                  "$ref": "#/components/schemas/GetStoreResponseDto"
+      tags:
+      - STORE
+  "/store/detail":
+    get:
+      operationId: StoreController_getStoreDetail
+      summary: 상점 상세
+      parameters:
+      - name: storeId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/GetStoreDetailResponseDto"
+      tags:
+      - STORE
+  "/store/reservation":
+    post:
+      operationId: StoreController_reservationStore
+      summary: 상점 예약
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserReservationDto"
+      responses:
+        '201':
+          description: ''
       tags:
       - STORE
 info:
@@ -244,3 +279,137 @@ components:
       - minPrice
       - maxPrice
       - keywordList
+    GetStoreResponseDto:
+      type: object
+      properties:
+        store_id:
+          type: string
+          description: 상점 ID
+          example: uuid
+        store_name:
+          type: string
+          description: 상점 이름
+          example: 편의점
+        store_description:
+          type: string
+          description: 상점 설명
+          example: 24시간 편의점
+        store_min_price:
+          type: number
+          description: 최소 가격
+          example: 10000
+        store_max_price:
+          type: number
+          description: 최대 가격
+          example: 60000
+        store_scope:
+          type: number
+          description: 상점 별점
+          example: 4.5
+        store_review:
+          type: string
+          description: 상점 리뷰
+          example: 좋아요
+        imageUrlList:
+          description: 상점 이미지 리스트
+          example:
+          - https://store-image-url.com
+          type: array
+          items:
+            type: string
+        keywordList:
+          description: 키워드 리스트
+          example:
+          - 키워드1
+          type: array
+          items:
+            type: string
+      required:
+      - store_id
+      - store_name
+      - store_description
+      - store_min_price
+      - store_max_price
+      - store_scope
+      - store_review
+      - imageUrlList
+      - keywordList
+    GetStoreDetailResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 상점 ID
+          example: uuid
+        name:
+          type: string
+          description: 상점 이름
+          example: 편의점
+        description:
+          type: string
+          description: 상점 설명
+          example: 24시간 편의점
+        minPrice:
+          type: number
+          description: 최소 가격
+          example: 10000
+        maxPrice:
+          type: number
+          description: 최대 가격
+          example: 60000
+        scope:
+          type: number
+          description: 상점 별점
+          example: 4.5
+        review:
+          type: string
+          description: 상점 리뷰
+          example: 좋아요
+        keywordList:
+          description: 키워드 리스트
+          example:
+          - 키워드1
+          type: array
+          items:
+            type: string
+        storeImageList:
+          description: 상점 이미지 리스트
+          example:
+          - https://store-image-url.com
+          type: array
+          items:
+            type: string
+      required:
+      - id
+      - name
+      - description
+      - minPrice
+      - maxPrice
+      - scope
+      - review
+      - keywordList
+      - storeImageList
+    CreateUserReservationDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 유저 아이디
+          example: uuid
+        storeId:
+          type: string
+          description: 상점 아이디
+          example: uuid
+        startDate:
+          type: string
+          description: 시작 날짜
+          example: '2021-01-01'
+        endDate:
+          type: string
+          description: 종료 날짜
+          example: '2021-01-02'
+      required:
+      - userId
+      - storeId
+      - startDate
+      - endDate

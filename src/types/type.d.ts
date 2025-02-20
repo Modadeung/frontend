@@ -74,6 +74,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/store/detail": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 상점 상세 */
+        get: operations["StoreController_getStoreDetail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/store/reservation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 상점 예약 */
+        post: operations["StoreController_reservationStore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -178,6 +212,130 @@ export interface components {
              *     ]
              */
             keywordList: string[];
+        };
+        GetStoreResponseDto: {
+            /**
+             * @description 상점 ID
+             * @example uuid
+             */
+            store_id: string;
+            /**
+             * @description 상점 이름
+             * @example 편의점
+             */
+            store_name: string;
+            /**
+             * @description 상점 설명
+             * @example 24시간 편의점
+             */
+            store_description: string;
+            /**
+             * @description 최소 가격
+             * @example 10000
+             */
+            store_min_price: number;
+            /**
+             * @description 최대 가격
+             * @example 60000
+             */
+            store_max_price: number;
+            /**
+             * @description 상점 별점
+             * @example 4.5
+             */
+            store_scope: number;
+            /**
+             * @description 상점 리뷰
+             * @example 좋아요
+             */
+            store_review: string;
+            /**
+             * @description 상점 이미지 리스트
+             * @example [
+             *       "https://store-image-url.com"
+             *     ]
+             */
+            imageUrlList: string[];
+            /**
+             * @description 키워드 리스트
+             * @example [
+             *       "키워드1"
+             *     ]
+             */
+            keywordList: string[];
+        };
+        GetStoreDetailResponseDto: {
+            /**
+             * @description 상점 ID
+             * @example uuid
+             */
+            id: string;
+            /**
+             * @description 상점 이름
+             * @example 편의점
+             */
+            name: string;
+            /**
+             * @description 상점 설명
+             * @example 24시간 편의점
+             */
+            description: string;
+            /**
+             * @description 최소 가격
+             * @example 10000
+             */
+            minPrice: number;
+            /**
+             * @description 최대 가격
+             * @example 60000
+             */
+            maxPrice: number;
+            /**
+             * @description 상점 별점
+             * @example 4.5
+             */
+            scope: number;
+            /**
+             * @description 상점 리뷰
+             * @example 좋아요
+             */
+            review: string;
+            /**
+             * @description 키워드 리스트
+             * @example [
+             *       "키워드1"
+             *     ]
+             */
+            keywordList: string[];
+            /**
+             * @description 상점 이미지 리스트
+             * @example [
+             *       "https://store-image-url.com"
+             *     ]
+             */
+            storeImageList: string[];
+        };
+        CreateUserReservationDto: {
+            /**
+             * @description 유저 아이디
+             * @example uuid
+             */
+            userId: string;
+            /**
+             * @description 상점 아이디
+             * @example uuid
+             */
+            storeId: string;
+            /**
+             * @description 시작 날짜
+             * @example 2021-01-01
+             */
+            startDate: string;
+            /**
+             * @description 종료 날짜
+             * @example 2021-01-02
+             */
+            endDate: string;
         };
     };
     responses: never;
@@ -320,8 +478,50 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>[];
+                    "application/json": components["schemas"]["GetStoreResponseDto"][];
                 };
+            };
+        };
+    };
+    StoreController_getStoreDetail: {
+        parameters: {
+            query: {
+                storeId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetStoreDetailResponseDto"];
+                };
+            };
+        };
+    };
+    StoreController_reservationStore: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateUserReservationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
