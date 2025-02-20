@@ -2,9 +2,13 @@ FROM krmp-d2hub-idock.9rum.cc/goorm/node:20
 
 WORKDIR /usr/src/app
 
-COPY src/ ./
+COPY src/package*.json ./
+
 
 RUN npm ci
+
+
+COPY src/ ./
 
 RUN npm run build
 
