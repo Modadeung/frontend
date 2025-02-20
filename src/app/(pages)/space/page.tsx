@@ -3,10 +3,12 @@
 import Navbar from "@/components/navbar";
 import SpaceKeyword from "@/components/space/SpaceKeyword";
 import Image from "next/image";
-import plusIcon from "@/assets/icons/plusIcon.svg";
+// import plusIcon from "@/assets/icons/plusIcon.svg";
+import categotyAddIcon from "@/assets/icons/categoryAddIcon.svg";
 import { useState } from "react";
 import SpaceCard from "@/components/space/SpaceCard";
 import modalReactangle from "@/assets/icons/modalRectangle.svg";
+import { Button } from "@/components/ui/button";
 
 export default function SpacePage() {
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -14,6 +16,24 @@ export default function SpacePage() {
     const handleCategoryOpen = () => {
         setIsCategoryOpen((prev) => !prev);
     };
+
+    const categories = [
+        "공예&소품",
+        "문구&팬시",
+        "미용",
+        "의류&패션",
+        "도서",
+        "생활용품",
+        "원두&티백",
+        "빵&디저트",
+        "기타",
+    ];
+
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([
+        "공예&소품",
+        "문구&팬시",
+        "미용",
+    ]);
 
     const data = [
         {
@@ -43,20 +63,31 @@ export default function SpacePage() {
         },
     ];
 
+    const handleSelect = (category: string) => {
+        if (selectedCategories.includes(category)) {
+            setSelectedCategories(
+                selectedCategories.filter((c) => c !== category)
+            );
+        } else {
+            setSelectedCategories([...selectedCategories, category]);
+        }
+    };
+
     return (
         <>
-            <div className="w-full h-full flex flex-col items-center">
+            <div className="w-full h-full flex flex-col items-center px-[20px]">
                 <p className="mt-[51px]">AI를 통해 추천된 가게</p>
-                <div className="flex gap-[11px] mt-[13px]">
-                    <SpaceKeyword keyword="의류&패션" />
-                    <SpaceKeyword keyword="의류&패션" />
-                    <SpaceKeyword keyword="의류&패션" />
+                <div className="flex flex-wrap gap-[11px] mt-[13px]">
+                    {selectedCategories &&
+                        selectedCategories.map((selectedCategory) => (
+                            <SpaceKeyword keyword={selectedCategory} />
+                        ))}
                     <div
                         className="w-32 h-32 flex items-center justify-center rounded-[999px] bg-[#FF9D00] cursor-pointer"
                         onClick={handleCategoryOpen}
                     >
                         <Image
-                            src={plusIcon}
+                            src={categotyAddIcon}
                             width={13}
                             height={13}
                             alt="plus icon"
@@ -89,16 +120,22 @@ export default function SpacePage() {
                                 키워드 추가 선택
                             </p>
 
-                            <div className="mt-[25px]">
-                                {/* <Button
-                key={category}
-                onClick={() => handleSelect(category)}
-                className={`text-white h-40 px-16 ${
-                  selected.includes(category) ? "bg-[#FF9D00]" : "bg-[#E1E1E8]"
-                }`}
-              >
-                {category}
-              </Button> */}
+                            <div className="mt-[25px] flex flex-wrap gap-x-[12px] gap-y-[24px]">
+                                {categories.map((category) => (
+                                    <Button
+                                        key={category}
+                                        onClick={() => handleSelect(category)}
+                                        className={`px-[16px] py-[16px] text-[14px] ${
+                                            selectedCategories.includes(
+                                                category
+                                            )
+                                                ? "bg-[#FF9D00] text-white"
+                                                : "bg-[#EFEFF6] text-[#A4A4A4]"
+                                        }`}
+                                    >
+                                        {category}
+                                    </Button>
+                                ))}
                             </div>
                         </div>
                     </div>
