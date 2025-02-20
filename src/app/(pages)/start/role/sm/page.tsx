@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Spinner from "@/components/spinner";
+import { createUserKeywords } from "@/services/user";
 
 // 분야 카테고리
 const firstCategories = [
@@ -25,6 +26,7 @@ const thirdCategories = [
   ["가족", "연인", "중장년"],
 ];
 
+// 소상공인
 export default function SmallPage(): JSX.Element {
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
@@ -47,8 +49,10 @@ export default function SmallPage(): JSX.Element {
     });
   };
 
-  const handleNext = () => {
-    const updatedSelections = [...finalSelections, ...selected];
+  const handleNext = async () => {
+    const selectedData = selected.at(-1) ?? "";
+    const updatedSelections = [...finalSelections, selectedData];
+
     setFinalSelections(updatedSelections);
 
     if (step === 1) {
@@ -58,11 +62,30 @@ export default function SmallPage(): JSX.Element {
       setStep(3);
       setSelected([]);
     } else {
-      console.log("최종 선택 데이터:", [...updatedSelections]);
-      setLoading(true);
-      setTimeout(() => {
-        router.push("/");
-      }, 1500);
+      console.log("최종 선택 데이터:", updatedSelections);
+
+      const userId = localStorage.getItem("유저 UUID");
+
+      if (!userId) {
+        console.error("유저 UUID가 없습니다.");
+        return;
+      }
+
+      try {
+        setLoading(true);
+        await createUserKeywords({
+          userId,
+          keyWordList: updatedSelections,
+        });
+        console.log("키워드 전송 성공:", updatedSelections);
+
+        setTimeout(() => {
+          router.push("/");
+          setLoading(false)
+        }, 1500);
+      } catch (error) {
+        console.error("키워드 전송 실패:", error);
+      }
     }
   };
 
