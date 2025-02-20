@@ -10,8 +10,8 @@ RUN npm ci
 COPY . ./
 
 RUN npm run build
-RUN npm install -g serve
+# RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["serve", "build"]
+CMD ["npm", "run", "build"]
