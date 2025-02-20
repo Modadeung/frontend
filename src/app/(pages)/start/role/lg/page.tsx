@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import Spinner from "@/components/spinner";
 
 // 분야 카테고리
 const firstCategories = [
@@ -27,6 +29,8 @@ export default function SmallPage(): JSX.Element {
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
   const [finalSelections, setFinalSelections] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSelect = (category: string) => {
     setSelected((prev) => {
@@ -55,8 +59,16 @@ export default function SmallPage(): JSX.Element {
       setSelected([]);
     } else {
       console.log("최종 선택 데이터:", [...updatedSelections]);
+      setLoading(true);
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
     }
   };
+
+  if (loading) {
+    return <Spinner className="flex flex-col items-center py-313" />;
+  }
 
   return (
     // 추후에 border 및 border-radius 수정 필요!
