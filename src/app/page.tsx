@@ -39,9 +39,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="px-20 pt-28 h-750 overflow-y-scroll scrollbar-hide">
-        <p className="text-[18px] font-bold leading-[100%] align-top">NAME</p>
-        <div className="flex justify-between pt-39">
+      <div className="px-20 pt-37 h-750 overflow-y-scroll scrollbar-hide">
+        <div className="flex justify-between">
           <p className="text-[16px] font-bold leading-[100%] align-top">
             나의 성장
           </p>
