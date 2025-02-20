@@ -172,7 +172,7 @@ export default function SpacePage() {
                                 onClick={() => setIsCategoryOpen(false)}
                             ></div>
 
-                            <div className="relative flex flex-col w-full h-[564px] bg-white rounded-t-[26px] px-[20px] py-[9px] animate-slide-up">
+                            <div className="relative flex flex-col w-full h-[564px] bg-white rounded-t-[26px] p-20 animate-slide-up">
                                 <div className="mx-auto">
                                     <Image
                                         src={modalReactangle}
@@ -180,17 +180,17 @@ export default function SpacePage() {
                                     />
                                 </div>
 
-                                <p className="font-bold text-[18px] mt-[16px]">
+                                <p className="font-bold text-[18px] mt-32">
                                     키워드 추가 선택
                                 </p>
 
-                                <div className="mt-[25px] space-y-6">
+                                <div className="mt-[14px] space-y-6">
                                     {/* 분야 카테고리 */}
                                     <div>
-                                        <p className="mb-2 font-semibold">
+                                        <p className="mb-2 font-semibold pb-8">
                                             분야
                                         </p>
-                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[24px]">
+                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[12px]">
                                             {fieldCategories.map((category) => (
                                                 <Button
                                                     key={category}
@@ -215,10 +215,10 @@ export default function SpacePage() {
 
                                     {/* 특징 카테고리 */}
                                     <div>
-                                        <p className="mb-2 font-semibold mt-[20px]">
+                                        <p className="mb-2 font-semibold mt-[20px] pb-8">
                                             특징
                                         </p>
-                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[24px]">
+                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[12px]">
                                             {featureCategories.map(
                                                 (category) => (
                                                     <Button
@@ -245,10 +245,10 @@ export default function SpacePage() {
 
                                     {/* 사람 카테고리 */}
                                     <div>
-                                        <p className="mb-2 font-semibold mt-[20px]">
+                                        <p className="mb-2 font-semibold mt-[20px] pb-8">
                                             사람
                                         </p>
-                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[24px]">
+                                        <div className="flex flex-wrap gap-x-[12px] gap-y-[12px]">
                                             {personCategories.map(
                                                 (category) => (
                                                     <Button
