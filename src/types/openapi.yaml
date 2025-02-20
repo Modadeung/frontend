@@ -1,0 +1,246 @@
+---
+openapi: 3.0.0
+paths:
+  "/user":
+    post:
+      operationId: UserController_createUser
+      summary: 유저 생성
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserDto"
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CreateUserResponseDto"
+      tags:
+      - USER
+  "/user/key-word":
+    post:
+      operationId: UserController_CreateKeyWord
+      summary: 유저 키워드 생성
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserKeyWordDto"
+      responses:
+        '201':
+          description: ''
+      tags:
+      - USER
+    get:
+      operationId: UserController_getKeyWord
+      summary: 유저 키워드 조회
+      parameters:
+      - name: userId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/CreateUserKeyWordResponseDto"
+      tags:
+      - USER
+    patch:
+      operationId: UserController_updateKeyWord
+      summary: 유저 키워드 수정
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateUserKeyWordDto"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/UpdateUserKeyWordResponseDto"
+      tags:
+      - USER
+  "/store":
+    post:
+      operationId: StoreController_createStore
+      summary: 상점 생성
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/CreateStoreDto"
+      responses:
+        '201':
+          description: ''
+      tags:
+      - STORE
+  "/store/list":
+    get:
+      operationId: StoreController_getStoreList
+      summary: 상점 리스트
+      parameters:
+      - name: keywordList
+        required: true
+        in: query
+        description: 검색 키워드
+        example:
+        - 편의점
+        - 치킨
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      tags:
+      - STORE
+info:
+  title: Modadeug API
+  description: Modadeug API description
+  version: '3.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        role:
+          type: string
+          description: 사용자 역할
+          example: 소상공인
+      required:
+      - role
+    CreateUserResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 사용자 ID
+          example: uuid
+        role:
+          type: string
+          description: 사용자 역할
+          example: 소상공인
+      required:
+      - id
+      - role
+    CreateUserKeyWordDto:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: 사용자 ID
+          example: uuid
+        keyWordList:
+          description: 키워드 리스트
+          example:
+          - 키워드1
+          - 키워드2
+          type: array
+          items:
+            type: string
+      required:
+      - userId
+      - keyWordList
+    CreateUserKeyWordResponseDto:
+      type: object
+      properties:
+        keyWordList:
+          description: 키워드 리스트
+          example:
+          - 키워드1
+          - 키워드2
+          type: array
+          items:
+            type: string
+      required:
+      - keyWordList
+    UpdateUserKeyWordResponseDto:
+      type: object
+      properties:
+        keyWordList:
+          description: 키워드 리스트
+          example:
+          - 키워드1
+          - 키워드2
+          type: array
+          items:
+            type: string
+      required:
+      - keyWordList
+    CreateStoreDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 상점 이름
+          example: 편의점
+        description:
+          type: string
+          description: 상점 설명
+          example: 24시간 편의점
+        imageUrl:
+          description: 상점 이미지
+          example:
+          - https://store-image-url.com
+          type: array
+          items:
+            type: string
+        scope:
+          type: number
+          description: 별점
+          example: 4.5
+        review:
+          type: string
+          description: 리뷰
+          example: 좋아요
+        minPrice:
+          type: number
+          description: 최소 주문 가격
+          example: 10000
+        maxPrice:
+          type: number
+          description: 최대 주문 가격
+          example: 60000
+        keywordList:
+          description: 키워드
+          example:
+          - 키워드1
+          - 키워드2
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - description
+      - imageUrl
+      - scope
+      - review
+      - minPrice
+      - maxPrice
+      - keywordList
