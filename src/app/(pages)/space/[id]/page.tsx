@@ -121,7 +121,7 @@ export default function SpaceDetailPage() {
 
             {storeDetail && (
                 <>
-                    <div className="flex flex-col pb-[104px]">
+                    <div className="flex flex-col h-750  scrollbar-hide overflow-y-scroll">
                         <Image
                             src={arrowBackIcon}
                             alt="arrowBackIcon"
