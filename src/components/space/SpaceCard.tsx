@@ -6,24 +6,25 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
-
-export interface SapaceCardProps {
-    images: string[];
-    keywords: string[];
-    title: string;
-    description: string;
-    startPrice: number;
-    endPrice: number;
-}
+import { useEffect, useState } from "react";
+import { GetStoreListResponse } from "@/types/Store.types";
 
 export default function SpaceCard({
-    images,
-    keywords,
-    title,
-    description,
-    startPrice,
-    endPrice,
-}: SapaceCardProps) {
+    imageUrlList,
+    keywordList,
+    store_name,
+    store_description,
+    store_min_price,
+    store_max_price,
+}: GetStoreListResponse) {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 50);
+    }, []);
+
     const settings = {
         dots: true,
         infinite: false,
@@ -54,43 +55,49 @@ export default function SpaceCard({
                     bottom: 22px !important; /* 기본값 덮어쓰기 위해 !important 사용 */
                 }
             `}</style>
-            <div className="flex flex-col w-350 relative cursor-pointer">
-                {/* 이미지 슬라이드 */}
-                <div className="w-350 h-350 relative">
-                    <Slider {...settings}>
-                        {images.map((image, index) => (
-                            <div key={index} className="w-350 h-350 relative">
-                                <Image
-                                    src={image}
-                                    alt={`image ${index + 1}`}
-                                    fill
-                                    className="rounded-lg shadow-md object-fill"
-                                />
+
+            {!isLoading && (
+                <div className="flex flex-col w-350 relative cursor-pointer">
+                    {/* 이미지 슬라이드 */}
+                    <div className="w-350 h-350 relative">
+                        <Slider {...settings}>
+                            {imageUrlList.map((image, index) => (
+                                <div
+                                    key={index}
+                                    className="w-350 h-350 relative"
+                                >
+                                    <Image
+                                        src={image}
+                                        alt={`image ${index + 1}`}
+                                        fill
+                                        className="rounded-lg shadow-md object-fill"
+                                    />
+                                </div>
+                            ))}
+                        </Slider>
+                    </div>
+
+                    {/* 키워드들 */}
+                    <div className="flex gap-[8px] mt-[22px]">
+                        {keywordList.map((keyword, index) => (
+                            <div key={index}>
+                                <SpaceSmallKeyword keyword={keyword} />
                             </div>
                         ))}
-                    </Slider>
-                </div>
+                    </div>
 
-                {/* 키워드들 */}
-                <div className="flex gap-[8px] mt-[22px]">
-                    {keywords.map((keyword, index) => (
-                        <div key={index}>
-                            <SpaceSmallKeyword keyword={keyword} />
-                        </div>
-                    ))}
-                </div>
+                    <p className="mt-[7px]">{store_name}</p>
+                    <p className="mt-[7px] text-[14px] text-[#6E6E6E]">
+                        {store_description}
+                    </p>
 
-                <p className="mt-[7px]">{title}</p>
-                <p className="mt-[7px] text-[14px] text-[#6E6E6E]">
-                    {description}
-                </p>
-
-                <div className="flex gap-[2px] mt-[7px]">
-                    <span>₩{formatNumber(startPrice)}</span>
-                    <span>~</span>
-                    <span>{formatNumber(endPrice)}</span>
+                    <div className="flex gap-[2px] mt-[7px]">
+                        <span>₩{formatNumber(store_min_price)}</span>
+                        <span>~</span>
+                        <span>{formatNumber(store_max_price)}</span>
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     );
 }

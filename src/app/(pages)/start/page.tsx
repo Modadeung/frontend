@@ -8,8 +8,16 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import cuteDog from "../../../assets/images/cutedog.jpeg";
+import { useEffect, useState } from "react";
 
 export default function StartPage() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 50);
+    }, []);
     const router = useRouter();
 
     const handleRouting = () => {
@@ -49,45 +57,47 @@ export default function StartPage() {
                 }
             `}</style>
 
-            <div className="w-full h-screen flex flex-col items-center">
-                <p className="mt-151 font-bold text-[24px]">
-                    앱에 대한 설명입니다.
-                </p>
-                <div className="w-252 h-328 mt-53">
-                    <Slider {...settings} className="w-full h-full">
-                        <div className="relative w-252 h-328">
-                            <Image
-                                src={cuteDog}
-                                alt="Slide 1"
-                                fill
-                                className="rounded-lg shadow-md object-fill"
-                            />
-                        </div>
-                        <div className="relative w-252 h-328">
-                            <Image
-                                src={cuteDog}
-                                alt="Slide 2"
-                                fill
-                                className="rounded-lg shadow-md object-fill"
-                            />
-                        </div>
-                        <div className="relative w-252 h-328">
-                            <Image
-                                src={cuteDog}
-                                alt="Slide 3"
-                                fill
-                                className="rounded-lg shadow-md object-fill"
-                            />
-                        </div>
-                    </Slider>
+            {!isLoading && (
+                <div className="w-full h-screen flex flex-col items-center">
+                    <p className="mt-151 font-bold text-[24px]">
+                        앱에 대한 설명입니다.
+                    </p>
+                    <div className="w-252 h-328 mt-53">
+                        <Slider {...settings} className="w-full h-full">
+                            <div className="relative w-252 h-328">
+                                <Image
+                                    src={cuteDog}
+                                    alt="Slide 1"
+                                    fill
+                                    className="rounded-lg shadow-md object-fill"
+                                />
+                            </div>
+                            <div className="relative w-252 h-328">
+                                <Image
+                                    src={cuteDog}
+                                    alt="Slide 2"
+                                    fill
+                                    className="rounded-lg shadow-md object-fill"
+                                />
+                            </div>
+                            <div className="relative w-252 h-328">
+                                <Image
+                                    src={cuteDog}
+                                    alt="Slide 3"
+                                    fill
+                                    className="rounded-lg shadow-md object-fill"
+                                />
+                            </div>
+                        </Slider>
+                    </div>
+                    <Button
+                        className="mt-172 w-[350px] h-[48px] rounded-lg bg-[#FF9D00] text-white font-medium cursor-pointer"
+                        onClick={handleRouting}
+                    >
+                        시작하기
+                    </Button>
                 </div>
-                <Button
-                    className="mt-172 w-[350px] h-[48px] rounded-lg bg-[#FF9D00] text-white font-medium cursor-pointer"
-                    onClick={handleRouting}
-                >
-                    시작하기
-                </Button>
-            </div>
+            )}
         </>
     );
 }
