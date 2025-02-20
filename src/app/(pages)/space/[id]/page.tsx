@@ -82,8 +82,8 @@ export default function SpaceDetailPage() {
 
     const coreKeywords = [
         "원두/티백 제품 only",
-        "20·30 여성 인기",
-        "아늑한",
+        "학생 인기",
+        "감성적인",
         "매대 크기 - 상",
     ];
 
@@ -94,7 +94,8 @@ export default function SpaceDetailPage() {
         spaceDetailCore4,
     ];
 
-    const note = "유의사항 입니다.";
+    const note =
+        "1층 매대는 4천원 / 2층 매대는 하루 6천원 입니다. 가게 분위기랑 잘 어울리는 티백 제품을 찾고 있어요.";
 
     return (
         <>
