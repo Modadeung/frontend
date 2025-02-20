@@ -3,7 +3,6 @@
 import Navbar from "@/components/navbar";
 import SpaceKeyword from "@/components/space/SpaceKeyword";
 import Image from "next/image";
-// import plusIcon from "@/assets/icons/plusIcon.svg";
 import categotyAddIcon from "@/assets/icons/categoryAddIcon.svg";
 import { useState } from "react";
 import SpaceCard from "@/components/space/SpaceCard";
@@ -29,7 +28,6 @@ export default function SpacePage() {
         "빵&디저트",
         "기타",
     ];
-
     const featureCategories = [
         "귀여운",
         "심플한",
@@ -39,7 +37,6 @@ export default function SpacePage() {
         "실용적인",
         "고급스러운",
     ];
-
     const personCategories = [
         "학생",
         "20‧30 여성",
@@ -69,7 +66,7 @@ export default function SpacePage() {
             keywordList: ["키워드", "키워드", "키워드"],
             store_name: "한라봉 카페 판매대",
             store_description:
-                "감성 가득한 플라워 디자인 스튜디도 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
+                "감성 가득한 플라워 디자인 스튜디오 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
             store_min_price: 206777,
             store_max_price: 306777,
         },
@@ -81,7 +78,7 @@ export default function SpacePage() {
             keywordList: ["키워드", "키워드", "키워드"],
             store_name: "한라봉 카페 판매대",
             store_description:
-                "감성 가득한 플라워 디자인 스튜디도 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
+                "감성 가득한 플라워 디자인 스튜디오 '배민 플라워' 입니다. 20살 중반 꽃 하나만 바라보고 유학을 떠났어요. 싱싱한 꽃내음이 주는 매력에 매료되어, 매일매일 꽃에 파묻혀 공부했어요.",
             store_min_price: 206777,
             store_max_price: 306777,
         },
@@ -103,6 +100,7 @@ export default function SpacePage() {
         <>
             <div className="w-full h-full flex flex-col items-center px-[20px]">
                 <p className="mt-[51px]">AI를 통해 추천된 가게</p>
+                {/* 현재 선택된 카테고리들을 보여주는 영역 */}
                 <div className="flex flex-wrap gap-[11px] mt-[13px]">
                     <SpaceKeyword keyword={selectedCategories.field} />
                     <SpaceKeyword keyword={selectedCategories.feature} />
@@ -119,17 +117,17 @@ export default function SpacePage() {
                         />
                     </div>
                 </div>
+
                 <div className="mt-[32px] flex flex-col gap-[43px] pb-[104px]">
-                    {data &&
-                        data.map((d, index) => (
-                            <SpaceCard
-                                store_id={""}
-                                store_scope={0}
-                                store_review={""}
-                                key={index}
-                                {...d}
-                            />
-                        ))}
+                    {data.map((d, index) => (
+                        <SpaceCard
+                            store_id={""}
+                            store_scope={0}
+                            store_review={""}
+                            key={index}
+                            {...d}
+                        />
+                    ))}
                 </div>
 
                 {isCategoryOpen && (
@@ -180,7 +178,7 @@ export default function SpacePage() {
 
                                 {/* 특징 카테고리 */}
                                 <div>
-                                    <p className="mb-2 font-semibold mt-20">
+                                    <p className="mb-2 font-semibold mt-[20px]">
                                         특징
                                     </p>
                                     <div className="flex flex-wrap gap-x-[12px] gap-y-[24px]">
@@ -208,7 +206,7 @@ export default function SpacePage() {
 
                                 {/* 사람 카테고리 */}
                                 <div>
-                                    <p className="mb-2 font-semibold mt-20">
+                                    <p className="mb-2 font-semibold mt-[20px]">
                                         사람
                                     </p>
                                     <div className="flex flex-wrap gap-x-[12px] gap-y-[24px]">

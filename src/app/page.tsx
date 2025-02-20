@@ -1,6 +1,7 @@
 import Image from "next/image";
 import top from "@/assets/images/main1.svg";
 import middle from "@/assets/images/main2.svg";
+import Navbar from "@/components/navbar";
 
 const spaceNames = [
   "공간 이름1",
@@ -25,27 +26,30 @@ function SpaceItem({ name }: { name: string }) {
 
 export default function Home() {
   return (
-    <div className="px-20 pt-45 border-1">
-      <span className="text-[18px] font-bold leading-[100%] align-top">
-        NAME
-      </span>
-      <div className="pt-35 pb-29">
-        <Image src={top} alt="서비스 이미지" width={350} height={254} />
+    <>
+      <div className="px-20 pt-45 h-750 overflow-y-scroll scrollbar-hide">
+        <span className="text-[18px] font-bold leading-[100%] align-top">
+          NAME
+        </span>
+        <div className="pt-35 pb-29">
+          <Image src={top} alt="서비스 이미지" width={350} height={254} />
+        </div>
+        <span className="text-[16px] font-medium leading-[100%] align-top">
+          나의 성장
+        </span>
+        <div className="pt-14 pb-32">
+          <Image src={middle} alt="성장 그래프" width={350} height={206} />
+        </div>
+        <span className="text-[16px] font-medium leading-[100%]">
+          추천하는 성장 공간
+        </span>
+        <div className="pt-14 flex gap-x-19 overflow-x-scroll scrollbar-hide overflow-y-hidden">
+          {spaceNames.map((name, index) => (
+            <SpaceItem key={index} name={name} />
+          ))}
+        </div>
       </div>
-      <span className="text-[16px] font-medium leading-[100%] align-top">
-        나의 성장
-      </span>
-      <div className="pt-14 pb-32">
-        <Image src={middle} alt="성장 그래프" width={350} height={206} />
-      </div>
-      <span className="text-[16px] font-medium leading-[100%]">
-        추천하는 성장 공간
-      </span>
-      <div className="pt-14 flex gap-x-19 overflow-x-scroll scrollbar-hide overflow-y-hidden">
-        {spaceNames.map((name, index) => (
-          <SpaceItem key={index} name={name} />
-        ))}
-      </div>
-    </div>
+      <Navbar />
+    </>
   );
 }
