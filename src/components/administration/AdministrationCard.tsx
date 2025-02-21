@@ -1,12 +1,12 @@
 import Image from "next/image";
-import reservation from "@/assets/images/reservation.jpeg";
+import reservationImg from "@/assets/images/reservation_img.jpg";
 
 export default function AdministrationCard(): JSX.Element {
   return (
     <div className="w-349 h-477 rounded-10 opacity-100 shadow-md">
       <div className="w-349 h-185 relative">
         <Image
-          src={reservation}
+          src={reservationImg}
           alt="서비스 이미지"
           fill
           className="rounded-t-10 object-cover"
@@ -15,7 +15,7 @@ export default function AdministrationCard(): JSX.Element {
 
       <div className="w-full h-291 px-20 py-32">
         <p className="text-[20px] font-bold leading-24 align-top pb-12">
-          달빛 카페 제주
+          한라봉 카페 판매대
         </p>
         <p className="text-[14px] leading-24 font-bold align-top">상품 관리</p>
         <p className="text-[14px] font-medium leading-24 pl-12">
