@@ -40,6 +40,8 @@
   <tr>
     <td colspan='2' align="center"><b>Backend</b></td>
     <td colspan='2' align="center"><b>Frontend</b></td>
+    <td colspan='2' align="center"><b>Product Manager</b></td>
+    <td colspan='2' align="center"><b>Designer</b></td>
   </tr>
   <tr>
     <!-- Backend - 차지민 -->
@@ -62,6 +64,20 @@
       <br/>
       <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white"/><br/>
     </td>
+    <!-- Product Manager - 양세영 -->
+    <td align="center">
+      <img src="https://avatars.githubusercontent.com/u/101076374?s=96&v=4" width="60px;" alt=""/>
+    </td>
+    <td align="center">
+      <b>양세영</b><br/>
+    </td>
+    <!-- Designer - 함수빈 -->
+    <td align="center">
+      <img src="https://avatars.githubusercontent.com/u/101076374?s=96&v=4" width="60px;" alt=""/>
+    </td>
+    <td align="center">
+      <b>함수빈</b><br/>
+    </td>
   </tr>
   <tr>
     <!-- Frontend - 조민석 -->
@@ -76,6 +92,10 @@
       <br/>
       <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=Next.js&logoColor=white"/><br/>
     </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
